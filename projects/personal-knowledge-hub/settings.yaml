@@ -1,0 +1,60 @@
+# Personal Knowledge Hub Configuration
+
+# Embedding settings
+embedding:
+  # Options: "local" or "api"
+  type: "local"
+  
+  # Local embedding model (used when type is "local")
+  local_model: "all-MiniLM-L6-v2"
+  local_dimensions: 384
+  
+  # API embedding settings (used when type is "api")
+  api_provider: "openai"  # Options: openai, cohere, etc.
+  api_model: "text-embedding-ada-002"
+  api_dimensions: 1536
+  api_key: ""  # Set this in environment variables or override in local config
+
+# Database settings
+database:
+  # ChromaDB persistence directory
+  persist_directory: "./chroma_db"
+  
+  # Collection settings
+  default_collection: "default"
+  
+  # Distance metric options: "l2", "ip", "cosine"
+  distance_metric: "cosine"
+
+# Ingestion settings
+ingestion:
+  # Chunking strategy
+  chunk_size: 1000
+  chunk_overlap: 200
+  
+  # Supported file extensions
+  supported_extensions:
+    - ".txt"
+    - ".md"
+    - ".pdf"
+    - ".docx"
+    - ".html"
+  
+  # Web scraping settings
+  web_scraping:
+    timeout: 30
+    max_content_length: 100000
+    respect_robots_txt: true
+
+# Query settings
+query:
+  # Number of results to return by default
+  top_k: 5
+  
+  # Minimum similarity score threshold (0.0 to 1.0)
+  min_similarity: 0.3
+
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
